@@ -1,0 +1,47 @@
+%sy5_1
+%不同半径巴特沃斯低通滤波器的平滑作用。
+q=imread('lena.jpg');
+f=rgb2gray(q);
+subplot(321);
+imshow(f,[]);
+title('原图');
+F=fftshift(fft2(f,size(f,1),size(f,2)));
+u=1:size(F,1);
+v=1:size(F,2);
+[V,U]=meshgrid(v,u);
+D=sqrt((U-(floor(size(F,1)/2)+1)).^2+(V-(floor(size(F,2)/2)+1)).^2); H=zeros(size(f));
+D0=5;n=2;
+H=1./(1+(D./D0).^(2*n));
+G=F.*H; %频域低通滤波
+G1=ifft2(ifftshift(G));
+subplot(322);
+imshow(real(G1),[]);
+title('半径小于 5 的巴特沃思低通滤波器');
+D0=15;
+H=1./(1+(D./D0).^(2*n));
+G=F.*H;
+G1=ifft2(ifftshift(G));
+subplot(323);
+imshow(real(G1),[]);
+title('半径小于 15 的巴特沃思低通滤波器');
+D0=30;
+H=1./(1+(D./D0).^(2*n));
+G=F.*H;
+G1=ifft2(ifftshift(G));
+subplot(324);
+imshow(real(G1),[]);
+title('半径小于 30 的巴特沃思低通滤波器');
+D0=80;
+H=1./(1+(D./D0).^(2*n));
+G=F.*H;
+G1=ifft2(ifftshift(G));
+subplot(325);
+imshow(real(G1),[]);
+title('半径小于 80 的巴特沃思低通滤波器');
+D0=230;
+H=1./(1+(D./D0).^(2*n));
+G=F.*H;
+G1=ifft2(ifftshift(G));
+subplot(326);
+imshow(real(G1),[]);
+title('半径小于 230 的巴特沃思低通滤波器');

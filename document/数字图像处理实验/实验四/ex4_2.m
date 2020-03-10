@@ -1,0 +1,14 @@
+%sy4_1
+f=zeros(256,256);
+f(108:148,108:148)=1;
+F=fft2(f);
+F1=log(1+abs(F));
+subplot(131),imshow(f,[]);title('原始图像')
+subplot(132),imshow(F1,[]);title('频谱不移动')
+subplot(133),imshow(fftshift(F1),[]);title('频谱移动到中心点')
+%sy4_2
+f=imread('lena.bmp');
+figure,imshow(f,[]);
+title('原图');
+F=fft2(f);
+figure;imshow(log(1+abs(fftshift(F))),[]),title('频谱移动到中心点');
