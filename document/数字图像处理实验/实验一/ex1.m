@@ -1,0 +1,14 @@
+I=imread('lena.jpg');
+J=imread('lena_gray.jpg');
+J1=rgb2gray(I);
+imshow(I);
+figure,imtool('D:\Matlab\document\数字图像处理实验\实验一\lena.jpg')
+size(I)
+figure,imshow(J1);
+figure,imshow(I),colorbar;
+figure,imshow(J),colorbar;
+imwrite(I,'Lenna.tiff');
+imfinfo("lena.jpg")
+k=imread('Lenna.tiff');
+im2uint8(k)
+im2double(k)
